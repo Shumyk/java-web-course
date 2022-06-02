@@ -1,6 +1,5 @@
 package com.bobocode.net.server;
 
-import com.bobocode.util.ExerciseNotCompletedException;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
@@ -36,12 +35,11 @@ public class ServerUtil {
     /**
      * Creates an instance of a {@link ServerSocket} based on the given port.
      *
-     * @param port
      * @return a new bound {@link ServerSocket} instance
      */
     @SneakyThrows
     public static ServerSocket createServerSocket(int port) {
-        throw new ExerciseNotCompletedException(); // todo: implement according to javadoc and verify by ServerUtilTest
+        return new ServerSocket(port);
     }
 
     /**
@@ -52,7 +50,7 @@ public class ServerUtil {
      */
     @SneakyThrows
     public static Socket acceptClientSocket(ServerSocket serverSocket) {
-        throw new ExerciseNotCompletedException(); // todo: implement according to javadoc and verify by ServerUtilTest
+        return serverSocket.accept();
     }
 
     /**
@@ -66,7 +64,8 @@ public class ServerUtil {
      */
     @SneakyThrows
     public static String readMessageFromSocket(Socket socket) {
-        throw new ExerciseNotCompletedException(); // todo: implement according to javadoc and verify by ServerUtilTest
+        final var reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        return reader.readLine();
     }
 
     /**
